@@ -1,9 +1,10 @@
-use serde::Deserialize;
 use crate::graph::Edge;
+use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]
 pub struct CityData {
     pub name: String,
+    pub description: String,
     pub roads: Vec<RoadData>,
 }
 
@@ -15,21 +16,23 @@ pub struct RoadData {
 }
 
 impl Edge for RoadData {
-	fn cost(&self) -> u32 {
-		self.distance
-	}
+    fn cost(&self) -> u32 {
+        self.distance
+    }
 }
 
 pub struct City {
-	pub name: String,
+    pub name: String,
+    pub description: String,
 }
 
 impl From<&CityData> for City {
-	fn from(value: &CityData) -> Self {
-		City {
-			name: value.name.clone()
-		}
-	}
+    fn from(value: &CityData) -> Self {
+        City {
+            name: value.name.clone(),
+            description: value.description.clone(),
+        }
+    }
 }
 
 #[derive(Deserialize, Debug)]
