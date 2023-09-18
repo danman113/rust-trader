@@ -1,6 +1,8 @@
 use crate::graph::Edge;
 use serde::Deserialize;
 
+use super::item::Inventory;
+
 #[derive(Deserialize, Debug)]
 pub struct CityData {
     pub name: String,
@@ -24,6 +26,7 @@ impl Edge for RoadData {
 pub struct City {
     pub name: String,
     pub description: String,
+    pub inventory: Inventory,
 }
 
 impl From<&CityData> for City {
@@ -31,16 +34,7 @@ impl From<&CityData> for City {
         City {
             name: value.name.clone(),
             description: value.description.clone(),
+            inventory: Inventory::new(),
         }
     }
-}
-
-#[derive(Deserialize, Debug)]
-pub struct WorldData {
-    pub starting_position: String,
-    pub cities: Vec<CityData>,
-}
-
-pub fn deserialize_world(serialized_world: &str) -> Result<WorldData, toml::de::Error> {
-    toml::from_str::<WorldData>(serialized_world)
 }

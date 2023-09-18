@@ -1,5 +1,138 @@
 starting_position = "Jericho"
 
+
+[[items]]
+key = "grain"
+name = "Grain"
+value = 1
+tags = ["Edible"]
+
+[[items]]
+key = "bread"
+name = "Bread"
+value = 10
+tags = ["Edible", "Craftible"]
+
+[[items]]
+key = "fish"
+name = "Fish"
+value = 10
+tags = ["Edible"]
+
+[[items]]
+key = "spice"
+name = "Spices"
+value = 50
+
+[[items]]
+key = "vegetables"
+name = "Vegetables"
+value = 15
+tags = ["Edible"]
+
+[[items]]
+key = "cheese"
+name = "Cheese"
+value = 20
+tags = ["Edible"]
+
+[[items]]
+key = "salt"
+name = "Salt"
+value = 5
+
+[[items]]
+key = "grapes"
+name = "Grapes"
+value = 10
+tags = ["Edible"]
+
+[[items]]
+key = "wine"
+name = "Wine"
+value = 50
+tags = ["Edible"]
+
+[[items]]
+key = "honey"
+name = "Honey"
+value = 40
+tags = ["Edible"]
+
+[[items]]
+key = "sausages"
+name = "Sausages"
+value = 25
+tags = ["Edible"]
+
+[[items]]
+key = "mushrooms"
+name = "Mushrooms"
+value = 18
+tags = ["Edible"]
+
+[[items]]
+key = "berries"
+name = "Berries"
+value = 12
+tags = ["Edible"]
+
+[[items]]
+key = "poultry"
+name = "Poultry"
+value = 22
+tags = ["Edible"]
+
+[[items]]
+key = "cloth"
+name = "Cloth"
+value = 15
+
+[[items]]
+key = "leather"
+name = "Leather"
+value = 18
+
+[[items]]
+key = "wood"
+name = "Wood"
+value = 12
+
+[[items]]
+key = "iron"
+name = "Iron Ore"
+value = 20
+
+[[items]]
+key = "gemstone"
+name = "Gemstone"
+value = 50
+
+[[items]]
+key = "tools"
+name = "Tools"
+value = 30
+
+[[items]]
+key = "weapons"
+name = "Weapons"
+value = 40
+
+[[items]]
+key = "armor"
+name = "Armor"
+value = 45
+
+[[items]]
+key = "pottery"
+name = "Pottery"
+value = 18
+
+[[items]]
+key = "candles"
+name = "Candles"
+value = 8
+
 [[cities]]
 name = "Jericho"
 description = """Jericho, a desert oasis, emerges like a resolute mirage amidst the arid expanse, defined by its unique architecture, city layout, and self-reliant economy. The architecture of Jericho exudes an ancient grandeur, with towering sandstone walls that encircle the city, harking back to a time when protection from desert storms was paramount. Within these walls, labyrinthine streets wind their way to the heart of the city, where an ornate central bazaar thrives with exotic spices, textiles, and precious goods.

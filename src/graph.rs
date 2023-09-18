@@ -184,7 +184,7 @@ impl<T, E: Edge> Graph<T, E> {
     }
 
     pub fn dijkstra(&self, from: NodeIndex, to: NodeIndex) -> Option<Vec<NodeIndex>> {
-        // I tested the extra overhead of even calling the extra function h. It seems rust basically removes the cost alltogether
+        // I tested the extra overhead of even calling the extra function h. It seems rust basically removes the cost all-together
         self.astar(from, to, |_, _| 0)
     }
 
@@ -234,6 +234,12 @@ mod tests {
     impl Edge for WeightedEdge {
         fn cost(&self) -> u32 {
             self.0
+        }
+    }
+
+    impl Edge for Box<dyn Edge> {
+        fn cost(&self) -> u32 {
+            self.as_ref().cost()
         }
     }
 
@@ -500,7 +506,7 @@ mod tests {
         let mut graph = Graph::<String, WeightedEdge>::new();
         let node_a = graph.insert_node("Node A".into());
         let node_b = graph.insert_node("Node B".into());
-        let edge = WeightedEdge(10); // Replace with your Edge type.
+        let edge = WeightedEdge(10);
 
         let edge_index = graph.insert_edge_undirected(edge, node_a, node_b);
 
@@ -508,5 +514,33 @@ mod tests {
 
         // Check the reverse direction as well
         assert_eq!(graph.get_edge(edge_index).map(|e| e.cost()), Some(10));
+    }
+
+    #[test]
+    fn works_with_both_weighted_and_unweighted_edges() {
+        let mut graph = Graph::<String, Box<dyn Edge>>::new();
+        let node_a = graph.insert_node("A".into());
+        let node_b = graph.insert_node("B".into());
+        let node_c = graph.insert_node("C".into());
+        let node_d = graph.insert_node("D".into());
+        let ab = Box::new(WeightedEdge(10));
+        let ac = Box::new(EmptyEdge);
+        let bd = Box::new(EmptyEdge);
+        let cd = Box::new(WeightedEdge(20));
+
+        graph.insert_edge_undirected(ab, node_a, node_b);
+        graph.insert_edge_undirected(ac, node_b, node_c);
+        graph.insert_edge_undirected(bd, node_b, node_d);
+        graph.insert_edge_undirected(cd, node_c, node_d);
+
+        let path_str = graph
+            .dijkstra(node_a, node_d)
+            .expect("dijkstra did not resolve")
+            .iter()
+            .map(|n| graph.get_node(*n).unwrap().clone())
+            .collect::<Vec<String>>()
+            .join("->");
+
+        assert_eq!(path_str, "A->B->D");
     }
 }
